@@ -1,17 +1,32 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import pizza.Factory;
+
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
+    private static final List<String> options = List.of(
+            "1- For view Mini Combo",
+            "2- For view Combo",
+            "3- For view Wombo Combo",
+            "4- Close (default)"
+    );
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        int option = 0;
+        var scanner = new Scanner(System.in);
+        var combos = List.of(Factory.miniCombo(), Factory.combo(), Factory.womboCombo());
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        while(option >= 0) {
+            System.out.println("Combos:");
+            options.forEach(System.out::println);
+            System.out.print("Press some option: ");
+            option = scanner.nextInt();
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+            if(option >= combos.size()){
+                break;
+            }
+            System.out.printf("\n%s\n\n", combos.get(option - 1));
         }
+
+        scanner.close();
     }
 }
